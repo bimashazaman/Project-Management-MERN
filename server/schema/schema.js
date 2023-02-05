@@ -47,26 +47,26 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return Project.find()
       },
-    },
+    }, // Get all projects
     project: {
       type: ProjectType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return Project.findById(args.id)
       },
-    },
+    }, // Get a project
     clients: {
       type: new GraphQLList(ClientType),
       resolve(parent, args) {
         return Client.find()
-      },
+      }, // Get all clients
     },
     client: {
       type: ClientType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return Client.findById(args.id)
-      },
+      }, // Get a client
     },
   },
 })
@@ -82,7 +82,7 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLNonNull(GraphQLString) },
         email: { type: GraphQLNonNull(GraphQLString) },
         phone: { type: GraphQLNonNull(GraphQLString) },
-      },
+      }, // Add a client
       resolve(parent, args) {
         const client = new Client({
           name: args.name,
@@ -90,7 +90,7 @@ const mutation = new GraphQLObjectType({
           phone: args.phone,
         })
 
-        return client.save()
+        return client.save() // Save to database
       },
     },
     // Delete a client
