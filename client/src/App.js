@@ -5,6 +5,7 @@ import {
   InMemoryCache,
   HttpLink,
 } from '@apollo/client'
+import ClientComponent from './components/Clients/ClientComponent'
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -16,7 +17,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Layout> </Layout>
+      <Layout>
+        <ClientComponent />
+      </Layout>
     </ApolloProvider>
   )
 }
